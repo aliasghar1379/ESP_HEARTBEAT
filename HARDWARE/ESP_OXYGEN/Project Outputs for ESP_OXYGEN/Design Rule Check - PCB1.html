@@ -1,0 +1,485 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2023-11-26</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">19:08:31</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc" class="file"><acronym title="C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc">C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">1</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">46</td></tr>
+</table>
+</td>
+</table><a name="IDWIM3AWEVX05WNMLMCSMI3WDUEHG20MEC350WZMGDJXY4QLRKDB5E"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDX43VMXIHXLTDJ5TSYWQAFLD0ML20MR4WKJHZLWHY5YWINOZFVNDJ">Multilayer Pads with 0 size Hole found</a></td>
+<td class="column2">1</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">1</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCTLESRAI0YPDB21TFCTORYIJQGVBD3NFLUNROYD3ZQ0QSHESQ3V">Clearance Constraint (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMQGAVZX5FK1EP4X23YEDSXOF4DM0L3XBWKXTDGDMUOYDLPTBIEDC">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDG4OPPKR42FB1MG1FABKZL0X3VK3LWPOQC2GPWQB0UDI5VHA2X23H">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGQB034VZCGCWK11FOFOAXFEI1HM0YT1HD2XARXCFPQORSRPICV1C">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHRAKU555XNIME4U5EFYYUWBZOLHKUJ2JS1W5UYJZ2ZE1ZXCUJWXP">Width Constraint (Min=0.5mm) (Max=2mm) (Preferred=1.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIB5XTDS0ZJGNGYJL3DLCHCIS3JEZKHYULYZQZXFCD4M0UZU0A0QG">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAO30S3VMKNYHM4AUEOHKQBQH4EVED2QC5RZNQEHZWSGXNOTBSWJE">Hole Size Constraint (Min=1mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">23</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOYAMAWGTFFMHEJJ0NLTEANBPXE2GGBTQXP0EE4RAOLNPMOG4FMJ">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNTW34RVEUDB2NCQT5SENYDQ34MWR0TJN0GGUMZDEHAZIZAJ54ZSO">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLZJJ0G55ILIUMLRJ13W0VCCSYOWAMTKUWPTXAJDW0FPDMQDD4UDI">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">21</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGQTS2PJVNFJTDX54BNHYCYI0FMNAARXHY0RDLQOYBKLRUHMLSFN">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEQZMX3D3QM2TFSJAFX5JN5AVAKMFKTVZPNZDKKHT5T22MGDHANLL">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID20MH5CHTDNT4IZLLKLLR40D3PCY2JX2LY2BRTBJE1CRAW2EKTPEN">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">46</td>
+</tr>
+</table><br><a name="IDRYNHQHVTWGBYPRMZQOJOERDATE2FZKQ545ZUUKPQEMQ4O5CVSIDI"><h2>Warnings</h2></a><a name="IDX43VMXIHXLTDJ5TSYWQAFLD0ML20MR4WKJHZLWHY5YWINOZFVNDJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Multilayer Pads with 0 size Hole found</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4072.535mil|Location2.X=4147.465mil|Location1.Y=5032.535mil|Location2.Y=5107.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4072.535mil|Location2.X=4147.465mil|Location1.Y=5032.535mil|Location2.Y=5107.465mil|Absolute=True">Pad H1-MH(4.064mm,-4.064mm) on Multi-Layer</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDG4OPPKR42FB1MG1FABKZL0X3VK3LWPOQC2GPWQB0UDI5VHA2X23H"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5472.535mil|Location2.X=5552.465mil|Location1.Y=4187.535mil|Location2.Y=5117.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5472.535mil|Location2.X=5552.465mil|Location1.Y=4187.535mil|Location2.Y=5117.465mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad P3-2(39.624mm,-3.81mm) on Multi-Layer And Pad P2-3(39.751mm,-25.527mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5477.535mil|Location2.X=5718.095mil|Location1.Y=3736.787mil|Location2.Y=4262.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5477.535mil|Location2.X=5718.095mil|Location1.Y=3736.787mil|Location2.Y=4262.465mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad P2-3(39.751mm,-25.527mm) on Multi-Layer And Pad U1-15(43.808mm,-37.226mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAO30S3VMKNYHM4AUEOHKQBQH4EVED2QC5RZNQEHZWSGXNOTBSWJE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4416.658mil|Location2.Y=4453.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4416.658mil|Location2.Y=4453.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-1(81.026mm,-20.193mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4316.658mil|Location2.Y=4353.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4316.658mil|Location2.Y=4353.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-2(81.026mm,-22.733mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4216.658mil|Location2.Y=4253.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4216.658mil|Location2.Y=4253.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-3(81.026mm,-25.273mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4116.658mil|Location2.Y=4153.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4116.658mil|Location2.Y=4153.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-4(81.026mm,-27.813mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4016.659mil|Location2.Y=4053.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=4016.659mil|Location2.Y=4053.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-5(81.026mm,-30.353mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=3916.659mil|Location2.Y=3953.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=3916.659mil|Location2.Y=3953.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-6(81.026mm,-32.893mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=3816.659mil|Location2.Y=3853.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=3816.659mil|Location2.Y=3853.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-7(81.026mm,-35.433mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=3716.659mil|Location2.Y=3753.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7121.658mil|Location2.X=7158.342mil|Location1.Y=3716.659mil|Location2.Y=3753.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P1-8(81.026mm,-37.973mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.658mil|Location2.X=5533.342mil|Location1.Y=4406.658mil|Location2.Y=4443.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.658mil|Location2.X=5533.342mil|Location1.Y=4406.658mil|Location2.Y=4443.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P2-1(39.751mm,-20.447mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.658mil|Location2.X=5533.342mil|Location1.Y=4306.658mil|Location2.Y=4343.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.658mil|Location2.X=5533.342mil|Location1.Y=4306.658mil|Location2.Y=4343.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P2-2(39.751mm,-22.987mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.658mil|Location2.X=5533.342mil|Location1.Y=4206.658mil|Location2.Y=4243.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5496.658mil|Location2.X=5533.342mil|Location1.Y=4206.658mil|Location2.Y=4243.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P2-3(39.751mm,-25.527mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=4961.658mil|Location2.Y=4998.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=4961.658mil|Location2.Y=4998.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P3-1(39.624mm,-6.35mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=5061.658mil|Location2.Y=5098.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=5061.658mil|Location2.Y=5098.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P3-2(39.624mm,-3.81mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=3171.659mil|Location2.Y=3208.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=3171.659mil|Location2.Y=3208.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P4-1(39.624mm,-51.816mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=3271.659mil|Location2.Y=3308.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5491.658mil|Location2.X=5528.342mil|Location1.Y=3271.659mil|Location2.Y=3308.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P4-2(39.624mm,-49.276mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=4961.658mil|Location2.Y=4998.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=4961.658mil|Location2.Y=4998.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P5-1(29.591mm,-6.35mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=5061.658mil|Location2.Y=5098.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=5061.658mil|Location2.Y=5098.342mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P5-2(29.591mm,-3.81mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=3171.659mil|Location2.Y=3208.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=3171.659mil|Location2.Y=3208.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P6-1(29.591mm,-51.816mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=3271.659mil|Location2.Y=3308.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5096.658mil|Location2.X=5133.342mil|Location1.Y=3271.659mil|Location2.Y=3308.341mil|Absolute=True">Hole Size Constraint: (0.9mm &lt; 1mm) Pad P6-2(29.591mm,-49.276mm) on Multi-Layer Actual Hole Size = 0.9mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.643mil|Location2.X=6512.357mil|Location1.Y=4657.643mil|Location2.Y=4692.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.643mil|Location2.X=6512.357mil|Location1.Y=4657.643mil|Location2.Y=4692.357mil|Absolute=True">Hole Size Constraint: (0.85mm &lt; 1mm) Pad R1-1(64.643mm,-14.097mm) on Multi-Layer Actual Hole Size = 0.85mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.643mil|Location2.X=6512.357mil|Location1.Y=4357.643mil|Location2.Y=4392.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6477.643mil|Location2.X=6512.357mil|Location1.Y=4357.643mil|Location2.Y=4392.357mil|Absolute=True">Hole Size Constraint: (0.85mm &lt; 1mm) Pad R1-2(64.643mm,-21.717mm) on Multi-Layer Actual Hole Size = 0.85mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6362.643mil|Location2.X=6397.357mil|Location1.Y=4437.643mil|Location2.Y=4472.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6362.643mil|Location2.X=6397.357mil|Location1.Y=4437.643mil|Location2.Y=4472.357mil|Absolute=True">Hole Size Constraint: (0.85mm &lt; 1mm) Pad R2-1(61.722mm,-19.685mm) on Multi-Layer Actual Hole Size = 0.85mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6362.643mil|Location2.X=6397.357mil|Location1.Y=4137.643mil|Location2.Y=4172.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6362.643mil|Location2.X=6397.357mil|Location1.Y=4137.643mil|Location2.Y=4172.357mil|Absolute=True">Hole Size Constraint: (0.85mm &lt; 1mm) Pad R2-2(61.722mm,-27.305mm) on Multi-Layer Actual Hole Size = 0.85mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDLZJJ0G55ILIUMLRJ13W0VCCSYOWAMTKUWPTXAJDW0FPDMQDD4UDI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6489.375mil|Location2.X=6500.625mil|Location1.Y=4634.104mil|Location2.Y=4645.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6489.375mil|Location2.X=6500.625mil|Location1.Y=4634.104mil|Location2.Y=4645.354mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.091mm &lt; 0.254mm) Between Pad R1-1(64.643mm,-14.097mm) on Multi-Layer And Track (64.643mm,-15.367mm)(64.643mm,-15.138mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.091mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6489.375mil|Location2.X=6500.625mil|Location1.Y=4404.646mil|Location2.Y=4415.896mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6489.375mil|Location2.X=6500.625mil|Location1.Y=4404.646mil|Location2.Y=4415.896mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.091mm &lt; 0.254mm) Between Pad R1-2(64.643mm,-21.717mm) on Multi-Layer And Track (64.643mm,-20.676mm)(64.643mm,-20.447mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.091mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6374.375mil|Location2.X=6385.625mil|Location1.Y=4414.104mil|Location2.Y=4425.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6374.375mil|Location2.X=6385.625mil|Location1.Y=4414.104mil|Location2.Y=4425.354mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.091mm &lt; 0.254mm) Between Pad R2-1(61.722mm,-19.685mm) on Multi-Layer And Track (61.722mm,-20.955mm)(61.722mm,-20.726mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.091mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6374.375mil|Location2.X=6385.625mil|Location1.Y=4184.646mil|Location2.Y=4195.896mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6374.375mil|Location2.X=6385.625mil|Location1.Y=4184.646mil|Location2.Y=4195.896mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.091mm &lt; 0.254mm) Between Pad R2-2(61.722mm,-27.305mm) on Multi-Layer And Track (61.722mm,-26.264mm)(61.722mm,-26.035mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.091mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6412.002mil|Location2.X=6419.668mil|Location1.Y=4776.167mil|Location2.Y=4783.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6412.002mil|Location2.X=6419.668mil|Location1.Y=4776.167mil|Location2.Y=4783.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-1(63.056mm,-10.858mm) on Multi-Layer And Track (57.531mm,-11.43mm)(64.135mm,-11.43mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6471.167mil|Location2.X=6478.833mil|Location1.Y=4838.037mil|Location2.Y=4845.703mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6471.167mil|Location2.X=6478.833mil|Location1.Y=4838.037mil|Location2.Y=4845.703mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-1(63.056mm,-10.858mm) on Multi-Layer And Track (64.135mm,-11.43mm)(64.135mm,-3.302mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6389.297mil|Location2.X=6396.963mil|Location1.Y=5096.167mil|Location2.Y=5103.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6389.297mil|Location2.X=6396.963mil|Location1.Y=5096.167mil|Location2.Y=5103.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-1(63.056mm,-3.874mm) on Multi-Layer And Track (57.531mm,-3.302mm)(64.135mm,-3.302mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6471.167mil|Location2.X=6478.833mil|Location1.Y=5034.297mil|Location2.Y=5041.963mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6471.167mil|Location2.X=6478.833mil|Location1.Y=5034.297mil|Location2.Y=5041.963mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-1(63.056mm,-3.874mm) on Multi-Layer And Track (64.135mm,-11.43mm)(64.135mm,-3.302mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6259.72mil|Location2.X=6270.97mil|Location1.Y=4754.2mil|Location2.Y=4765.45mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6259.72mil|Location2.X=6270.97mil|Location1.Y=4754.2mil|Location2.Y=4765.45mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.203mm &lt; 0.254mm) Between Pad S1-2(58.611mm,-10.858mm) on Multi-Layer And Text "U1" (60.63mm,-13.691mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.203mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6211.167mil|Location2.X=6218.833mil|Location1.Y=4798.667mil|Location2.Y=4806.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6211.167mil|Location2.X=6218.833mil|Location1.Y=4798.667mil|Location2.Y=4806.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-2(58.611mm,-10.858mm) on Multi-Layer And Track (57.531mm,-11.43mm)(57.531mm,-3.302mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6219.959mil|Location2.X=6227.626mil|Location1.Y=4776.167mil|Location2.Y=4783.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6219.959mil|Location2.X=6227.626mil|Location1.Y=4776.167mil|Location2.Y=4783.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-2(58.611mm,-10.858mm) on Multi-Layer And Track (57.531mm,-11.43mm)(64.135mm,-11.43mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6211.167mil|Location2.X=6218.833mil|Location1.Y=5073.667mil|Location2.Y=5081.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6211.167mil|Location2.X=6218.833mil|Location1.Y=5073.667mil|Location2.Y=5081.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-2(58.611mm,-3.874mm) on Multi-Layer And Track (57.531mm,-11.43mm)(57.531mm,-3.302mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6222.661mil|Location2.X=6230.328mil|Location1.Y=5096.167mil|Location2.Y=5103.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6222.661mil|Location2.X=6230.328mil|Location1.Y=5096.167mil|Location2.Y=5103.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S1-2(58.611mm,-3.874mm) on Multi-Layer And Track (57.531mm,-3.302mm)(64.135mm,-3.302mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5676.167mil|Location2.X=5683.833mil|Location1.Y=3252.264mil|Location2.Y=3259.931mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5676.167mil|Location2.X=5683.833mil|Location1.Y=3252.264mil|Location2.Y=3259.931mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-1(44.514mm,-50.102mm) on Multi-Layer And Track (43.942mm,-51.181mm)(43.942mm,-44.577mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5738.037mil|Location2.X=5745.703mil|Location1.Y=3211.167mil|Location2.Y=3218.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5738.037mil|Location2.X=5745.703mil|Location1.Y=3211.167mil|Location2.Y=3218.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-1(44.514mm,-50.102mm) on Multi-Layer And Track (43.942mm,-51.181mm)(52.07mm,-51.181mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5934.297mil|Location2.X=5941.963mil|Location1.Y=3211.167mil|Location2.Y=3218.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5934.297mil|Location2.X=5941.963mil|Location1.Y=3211.167mil|Location2.Y=3218.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-1(51.498mm,-50.102mm) on Multi-Layer And Track (43.942mm,-51.181mm)(52.07mm,-51.181mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5996.167mil|Location2.X=6003.833mil|Location1.Y=3214.297mil|Location2.Y=3221.963mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5996.167mil|Location2.X=6003.833mil|Location1.Y=3214.297mil|Location2.Y=3221.963mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-1(51.498mm,-50.102mm) on Multi-Layer And Track (52.07mm,-51.181mm)(52.07mm,-44.577mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5691.567mil|Location2.X=5699.233mil|Location1.Y=3471.167mil|Location2.Y=3478.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5691.567mil|Location2.X=5699.233mil|Location1.Y=3471.167mil|Location2.Y=3478.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-2(44.514mm,-45.657mm) on Multi-Layer And Track (43.942mm,-44.577mm)(52.07mm,-44.577mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5676.167mil|Location2.X=5683.833mil|Location1.Y=3399.184mil|Location2.Y=3406.851mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5676.167mil|Location2.X=5683.833mil|Location1.Y=3399.184mil|Location2.Y=3406.851mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-2(44.514mm,-45.657mm) on Multi-Layer And Track (43.942mm,-51.181mm)(43.942mm,-44.577mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5966.567mil|Location2.X=5974.233mil|Location1.Y=3471.167mil|Location2.Y=3478.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5966.567mil|Location2.X=5974.233mil|Location1.Y=3471.167mil|Location2.Y=3478.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-2(51.498mm,-45.657mm) on Multi-Layer And Track (43.942mm,-44.577mm)(52.07mm,-44.577mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5996.167mil|Location2.X=6003.833mil|Location1.Y=3394.959mil|Location2.Y=3402.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Aliasghar\Desktop\PRJ\ESP8266_OXYGEN\Altium\ESP_OXYGEN\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5996.167mil|Location2.X=6003.833mil|Location1.Y=3394.959mil|Location2.Y=3402.626mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad S2-2(51.498mm,-45.657mm) on Multi-Layer And Track (52.07mm,-51.181mm)(52.07mm,-44.577mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

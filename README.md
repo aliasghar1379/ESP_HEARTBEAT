@@ -1,12 +1,84 @@
- # ESP_HEARTBEAT
-Open Source HEART_BEAT device
-This device is powered by ESP8266 soc that Include this functionalities:
--run as a wifi-sofasp on initialization
--web server for choose the wifi for connection
--api developed with php on a personal server for connection and log the data on a web address
--showing the data on a spi protocol lcd 0.96 inch
--and the project is all open and well documented make it awesome like you are ...
-![image](https://github.com/aliasghar1379/ESP_HEARTBEAT/assets/59472710/4f499b32-fcf7-42a0-afeb-bc28c1838990)
+# ESP_HEARTBEAT
 
+An open-source heart rate monitoring system powered by ESP8266, featuring wireless connectivity and real-time data visualization.
 
+![ESP_HEARTBEAT Device](https://github.com/aliasghar1379/ESP_HEARTBEAT/assets/59472710/4f499b32-fcf7-42a0-afeb-bc28c1838990)
 
+## Features
+
+- **WiFi Soft AP Configuration**
+  - Initial setup as a WiFi access point
+  - Web-based interface for WiFi network selection
+  
+- **Real-time Monitoring**
+  - Heart rate data visualization on 0.96-inch SPI LCD display
+  - Remote data logging via PHP-based API
+  
+- **Web Integration**
+  - Custom PHP API for data collection and storage
+  - Secure data transmission to personal server
+  
+- **Hardware**
+  - ESP8266 SOC as the main controller
+  - 0.96-inch LCD display with SPI interface
+  - Pulse sensor integration
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/aliasghar1379/ESP_HEARTBEAT.git
+   ```
+
+2. Install required dependencies (list specific libraries needed)
+
+3. Upload the firmware to your ESP8266 device
+
+## Initial Setup
+
+1. Power on the device
+2. Connect to the ESP_HEARTBEAT WiFi network
+3. Navigate to the configuration portal
+4. Select your local WiFi network
+5. The device will automatically connect and begin monitoring
+
+## Hardware Requirements
+
+- ESP8266 development board
+- 0.96-inch SPI LCD display
+- Pulse sensor
+- Power supply
+- (Add any additional components)
+
+## Software Dependencies
+
+- Arduino IDE
+- Required libraries:
+  - ESP8266WiFi
+  - ESP8266WebServer
+  - (List other necessary libraries)
+
+## API Documentation
+
+The device connects to a PHP-based API for data logging. API endpoints include:
+
+- `/log` - POST endpoint for sending heart rate data
+- (Add other API endpoints and their descriptions)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[Add your chosen license]
+
+## Acknowledgments
+
+- Thanks to all contributors
+- (Add any other acknowledgments)
+
+## Contact
+
+- GitHub: [@aliasghar1379](https://github.com/aliasghar1379)
+- (Add additional contact information if desired)

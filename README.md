@@ -29,10 +29,11 @@ An open-source heart rate monitoring system powered by ESP8266, featuring wirele
    ```bash
    git clone https://github.com/aliasghar1379/ESP_HEARTBEAT.git
    ```
+2. go to the document guide and make a PHP base api for log the data on your server
+   
+3. Install required dependencies (list specific libraries needed)
 
-2. Install required dependencies (list specific libraries needed)
-
-3. Upload the firmware to your ESP8266 device
+4. Upload the firmware to your ESP8266 device
 
 ## Initial Setup
 
@@ -60,25 +61,17 @@ An open-source heart rate monitoring system powered by ESP8266, featuring wirele
 
 ## API Documentation
 
-The device connects to a PHP-based API for data logging. API endpoints include:
-
-- `/log` - POST endpoint for sending heart rate data
-- (Add other API endpoints and their descriptions)
+The device connects to a PHP-based API for data logging.
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
-
-[Add your chosen license]
 
 ## Acknowledgments
 
 - Thanks to all contributors
-- (Add any other acknowledgments)
 
 ## Contact
 
 - GitHub: [@aliasghar1379](https://github.com/aliasghar1379)
-- (Add additional contact information if desired)
